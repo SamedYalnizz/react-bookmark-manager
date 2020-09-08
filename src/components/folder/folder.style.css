@@ -1,0 +1,27 @@
+.folder-container{
+    flex: 1 0 21%;
+    margin: 10px 10px;
+    position: relative;
+    height: 300px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.3);
+    overflow-x: hidden;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bookmark-item {
+    margin: 10px;
+    padding: 10px; 
+    line-height: 1.5rem;
+    height: fit-content;
+    border-radius: 10px;
+    background: var(--item-background);
+    flex: 1 0 21%;
+    align-items: center;
+}

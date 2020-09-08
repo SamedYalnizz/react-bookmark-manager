@@ -5,15 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import './bookmark-modal.style.css';
 
-export const BookmarkModal = () => (
+export const BookmarkModal = (props) => (
     <div className='modal-container'>
-        <FontAwesomeIcon icon={faWindowClose} className="close-icon"/>
+        <FontAwesomeIcon icon={faWindowClose} className="close-icon" onClick= {props.close}/>
         <div className="modal-header">
             <h3>Add New Bookmark</h3>
-            
         </div>
         <div className="modal-content">
-            <NewBookmarkForm />
+            <NewBookmarkForm close={props.close}/>
         </div>
     </div>
     
