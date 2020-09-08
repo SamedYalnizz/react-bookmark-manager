@@ -7,7 +7,7 @@ export class Modal extends Component{
            return null;
         } 
         return (
-                <div>{this.props.children}</div>
+                <div className="modal">{this.props.children}</div>
             )    
         
     }   

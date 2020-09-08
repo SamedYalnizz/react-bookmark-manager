@@ -1,23 +1,27 @@
 import React, { Component} from 'react';
+import {NewBookmarkForm} from '../new-bookmark-form/new-bookmark-form.component';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import './bookmark-modal.style.css';
 
 export const BookmarkModal = () => (
-    <div>
-        <div>
-            <h2>Add New Bookmark</h2>
-            <FontAwesomeIcon icon={faWindowClose}/>
-        </div>
-        <div>
+    <div className='modal-container'>
+        <FontAwesomeIcon icon={faWindowClose} className="close-icon"/>
+        <div className="modal-header">
+            <h3>Add New Bookmark</h3>
             
         </div>
-        Bookmark Modal
+        <div className="modal-content">
+            <NewBookmarkForm />
+        </div>
     </div>
+    
 )
 
 // Create Modal Header (Title & Close Icon)
 // Need BookmarkForm
+
 
 
 // header title, close button
