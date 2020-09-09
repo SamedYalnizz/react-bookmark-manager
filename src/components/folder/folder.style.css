@@ -7,12 +7,27 @@
     border-radius: 10px;
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.3);
     overflow-x: hidden;
+    clear:none;  
 }
 
-ul {
-    list-style: none;
+.folder-header{
+    background-color: tomato;
+    padding: 20px;
+    color: white;
+}
+.folder-title{
     padding: 0;
     margin: 0;
+}
+
+.bookmark-list {
+    list-style-type: none;  
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
 }
 
 .bookmark-item {
@@ -21,7 +36,10 @@ ul {
     line-height: 1.5rem;
     height: fit-content;
     border-radius: 10px;
-    background: var(--item-background);
+    background: rgba(0, 0, 0, 0.2);
     flex: 1 0 21%;
     align-items: center;
 }
+
+
+

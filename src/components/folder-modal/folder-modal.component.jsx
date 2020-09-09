@@ -25,10 +25,7 @@ export class FolderModal extends React.Component{
             name: this.state.folderName,
             bookmarks: []
         }
-        const oldFolders = this.props.folders;
-        oldFolders.push(newFolder);
-        console.log(oldFolders);
-        this.props.addFolder(oldFolders);
+        this.props.addFolder(newFolder);
         this.props.close();
     }
 
