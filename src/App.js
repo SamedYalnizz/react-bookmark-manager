@@ -65,6 +65,14 @@ class App extends React.Component{
     }
   }
 
+  addBookmark = (bookmark, folderIndex) => {
+    let selectedFolder = this.state.folders.find((folder, index) => index == folderIndex);
+    selectedFolder.bookmarks.push(bookmark);
+    let allFolders = [...this.state.folders];
+    allFolders.splice(folderIndex, 1, selectedFolder);
+    this.setState({folders: allFolders})
+  }
+
   addFolder = (folder) => {
     this.setState({folders: this.state.folders.concat(folder)});
   }
@@ -88,7 +96,7 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        <NavBar addFolder={this.addFolder} folders={this.state.folders}/>
+        <NavBar addFolder={this.addFolder} folders={this.state.folders} addBookmark={this.addBookmark}/>
         <FolderList folders={this.state.folders} deleteFolder={this.deleteFolder} updateFolder={this.updateFolder} updateFolderList={this.updateFolderList}/>
       </div>
     );
