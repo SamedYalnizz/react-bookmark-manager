@@ -36,19 +36,23 @@ class App extends React.Component{
         }
         let folder1 = {
             name: 'To Read',
-            bookmarks: [bookmark1, bookmark2]
+            bookmarks: [bookmark1, bookmark2],
+            id: 1
         }
         let folder2 = {
             name: 'Coding',
-            bookmarks: [bookmark3]
+            bookmarks: [bookmark3],
+            id: 2
         }
         let folder3 = {
             name: 'News',
-            bookmarks: [bookmark4]
+            bookmarks: [bookmark4],
+            id: 3
         }
         let folder4 = {
             name: 'Personal',
-            bookmarks: []
+            bookmarks: [],
+            id: 4
         }
         let folders = [ folder1 , folder2 , folder3 , folder4];
      localStorage.setItem('Folders', JSON.stringify(folders));
@@ -76,11 +80,16 @@ class App extends React.Component{
     this.setState({folders: newFolders});  
   }
 
+  updateFolderList = (newList) => {
+    let newFolders = [...newList];
+    this.setState({folders: newFolders});
+  }
+
   render(){
     return (
       <div className="App">
         <NavBar addFolder={this.addFolder} folders={this.state.folders}/>
-        <FolderList folders={this.state.folders} deleteFolder={this.deleteFolder} updateFolder={this.updateFolder}/>
+        <FolderList folders={this.state.folders} deleteFolder={this.deleteFolder} updateFolder={this.updateFolder} updateFolderList={this.updateFolderList}/>
       </div>
     );
   }

@@ -9,8 +9,6 @@ export class NewBookmarkForm extends React.Component{
             websiteName: '',
             websiteUrl: '',
             folderSelection: ''
-
-
         }
     }
 
