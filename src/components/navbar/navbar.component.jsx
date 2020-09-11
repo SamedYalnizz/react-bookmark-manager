@@ -33,7 +33,7 @@ export class NavBar extends Component {
             <div className="navbar">
                 <button type="button" onClick={this.showBookmarkModal} className="button">+ Bookmark</button>
                 <Modal show={this.state.showBookmarkModal} >
-                    <BookmarkModal close={this.hideBookmarkModal} addBookmark={this.props.addBookmark} close={this.hideBookmarkModal}/>
+                    <BookmarkModal close={this.hideBookmarkModal} addBookmark={this.props.addBookmark} close={this.hideBookmarkModal} folders={this.props.folders}/>
                 </Modal> 
                 <button type="button" onClick={this.showFolderModal} className="button">+ Folder</button>
                 <Modal show={this.state.showFolderModal}>

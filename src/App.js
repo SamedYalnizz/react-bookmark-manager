@@ -15,7 +15,7 @@ class App extends React.Component{
   componentDidMount() {
     if(window.localStorage.getItem('Folders')){
       let folders = JSON.parse(localStorage.getItem('Folders'));
-      this.setState({folders: folders});
+      this.setState({folders: folders},() => console.log(this.state.folders));
     } 
     else {
         let bookmark1 = {

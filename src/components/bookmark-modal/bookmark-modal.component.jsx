@@ -21,7 +21,7 @@ export class BookmarkModal extends React.Component{
         this.handleWebsiteUrlChange = this.handleWebsiteUrlChange.bind(this);
         this.handleFolderSelectionChange = this.handleFolderSelectionChange.bind(this);
         this.validateInput = this.validateInput.bind(this);
-
+        this.validateUrl = this.validateUrl.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this); 
     };
 
@@ -46,8 +46,22 @@ export class BookmarkModal extends React.Component{
     validateInput(websiteName, websiteUrl){
         return {
             websiteName: websiteName.length === 0,
-            websiteUrl: websiteUrl.length === 0
+            websiteUrl: this.validateUrl(websiteUrl)
         }
+    }
+
+    validateUrl(websiteUrl){
+        const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+        const regex = new RegExp(expression);
+        let urlValue = websiteUrl.slice();
+        if(!urlValue.includes('http://', 'https://')){
+            urlValue = `https://${urlValue}`;
+        }
+        if (!urlValue.match(regex) || urlValue.length === 0) {
+            return true;
+        }
+        return false;
+        
     }
     canBeSubmitted() {
         const errors = this.validateInput(
@@ -62,15 +76,18 @@ export class BookmarkModal extends React.Component{
         }
     }
 
-
     handleSubmit(event){
         if(!this.canBeSubmitted()){
             event.preventDefault();
             return; 
         }
+        let urlValue = this.state.websiteUrl.slice();
+        if(!urlValue.includes('http://', 'https://')){
+            urlValue = `https://${urlValue}`;
+        }
         const newBookmark = {
             name: this.state.websiteName,
-            url: this.state.websiteUrl,
+            url: urlValue,
         }
         this.props.addBookmark(newBookmark, this.state.folderSelection);
         this.props.close();
@@ -117,13 +134,12 @@ export class BookmarkModal extends React.Component{
                         <label>
                             Folder:
                             <select className="form-input" name="folders" id="folder-selection" onChange={this.handleFolderSelectionChange}>
-                                <option value="0">To Read </option>
-                                <option value="1">News</option>
-                                <option value="2">Coding</option>
-                                <option value="3">Personal</option>
+                                {this.props.folders.map((folder, index) =>(
+                                    <option value={index}>{folder.name}</option>
+                                ))}
                             </select>
                         </label>
-                        <button type="submit" value="Save" className="save-btn" disabled={isDisabled}/>
+                        <button type="submit" value="Save" className="save-btn" disabled={isDisabled}>Save</button>
                     </form>
                 </div>
         </div>

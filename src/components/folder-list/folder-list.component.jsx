@@ -7,7 +7,7 @@ export class FolderList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            folders: props.folders
+            folders: ""
         }
     }
     componentDidMount(){
@@ -23,8 +23,10 @@ export class FolderList extends React.Component{
             this.setState({folders: newState})
             let newList = [...this.state.folders];
             // bis hierhin klappt es gut. updateFolderList klappt nicht. 
-            this.props.updateFolderList(newList);
-            }}
+            if(this.state.folders.length !== 0){
+                this.props.updateFolderList(newList);
+            }
+        }}
          >
             {this.props.folders.map((item,index) => (
                 <Folder key={item.id} folder={index} folders={this.props.folders} deleteFolder={this.props.deleteFolder} updateFolder={this.props.updateFolder}/>
