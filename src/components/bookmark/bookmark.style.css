@@ -1,0 +1,37 @@
+.bookmark-item {
+    margin: 10px;
+    padding: 10px; 
+    line-height: 1.5rem;
+    height: fit-content;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    flex: 1 0 21%;
+    align-items: center;
+}
+
+.bookmark-item:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.bookmark-delete-icon {
+    display: none;
+    float: right;
+    color: white;
+    font-size: 16px;
+    top: 1px;
+    right: 5px;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+}
+
+.bookmark-item:hover .bookmark-delete-icon{
+    display: flex;
+}
+
+.edit-icon{
+    color:white;
+    float:right;
+    margin-right: 15px;
+    cursor: pointer;
+}
