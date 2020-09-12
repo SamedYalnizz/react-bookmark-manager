@@ -15,11 +15,11 @@ export class Folder extends React.Component{
             folderTitle: props.folders[props.folder].name,
             beforeHtml: "<h2 className='folder-title'>",
             afterHtml: "</h2>",
-            tempFolderTitle: props.folders[props.folder].name,
-            showBookmarkModal: false
+            tempFolderTitle: props.folders[props.folder].name
         }
         this.deleteBookmark = this.deleteBookmark.bind(this);
-        this.editBookmark = this.editBookmark.bind(this);
+        this.updateBookmark = this.updateBookmark.bind(this);
+        this.updateBookmarkList = this.updateBookmarkList.bind(this);
     }
     handleFolderNameChange = (event) => {
         let newTitle = event.target.value;
@@ -54,55 +54,29 @@ export class Folder extends React.Component{
         this.props.updateFolder(newFolder, this.props.folder);
     }
 
-    editBookmark(bookmarkIndex){
-        console.log("Hello Edit Bookmark");
-        // Open Bookmark Modal with Values inserted
-        // When clicking on save: updates the bookmark with the given index
-            // Open bookmark modal
-            /*
-           
-
-export class NavBar extends Component {
-    constructor() {
-        super();
-        this.state = {
-            showBookmarkModal: false,
-            showFolderModal: false
+    updateBookmark(oldFolderIndex, oldBookmarkIndex, newBookmarkName, newBookmarkUrl){
+        let newFolder = JSON.parse(JSON.stringify(this.props.folders[this.props.folder]));
+        let newBookmark = {
+            name: newBookmarkName,
+            url: newBookmarkUrl
         }
-        
-    }
-    
-    showBookmarkModal = () => {
-        this.setState({showBookmarkModal: true});
-    }
-    hideBookmarkModal = () => {
-        this.setState({showBookmarkModal: false})
-    }
-    showFolderModal = () => {
-        this.setState({showFolderModal: true});
-    }
-    hideFolderModal = () => {
-        this.setState({showFolderModal: false})
+        newFolder.bookmarks.splice(oldBookmarkIndex, 1, newBookmark);
+        let newFolders = [...this.props.folders];
+        newFolders[this.props.folder] = newFolder;
+        this.props.updateFolder(newFolder, this.props.folder);        
     }
 
-    render() {
-        return (
-            <div className="navbar">
-                <button type="button" onClick={this.showBookmarkModal} className="button">+ Bookmark</button>
-                <Modal show={this.state.showBookmarkModal} >
-                    <BookmarkModal close={this.hideBookmarkModal} addBookmark={this.props.addBookmark} close={this.hideBookmarkModal} folders={this.props.folders}/>
-                </Modal> 
-                <button type="button" onClick={this.showFolderModal} className="button">+ Folder</button>
-                <Modal show={this.state.showFolderModal}>
-                    <FolderModal close={this.hideFolderModal} addFolder={this.props.addFolder} folders={this.props.folders} />
-                </Modal>
-            </div>
-        )
+    updateBookmarkList(bookmarkList, oldFolderIndex, newFolderIndex){
+        let newFolder = JSON.parse(JSON.stringify(this.props.folders[this.props.folder]));
+        let newBookmarkList = JSON.parse(JSON.stringify(bookmarkList));
+        newFolder.bookmarks = newBookmarkList;
+        this.props.updateFolder(newFolder, this.props.folder);
     }
-        
-}*/
 
-    }
+    /*updateFolderList = (newList) => {
+    let newFolders = [...newList];
+    this.setState({folders: newFolders});
+  }*/
 
     render(){
         return (
@@ -121,7 +95,15 @@ export class NavBar extends Component {
 
     
             </div>
-            <BookmarkList folder={this.props.folders[this.props.folder]} folders={this.props.folders} deleteBookmark={this.deleteBookmark} editBookmark={this.editBookmark}/>
+
+            <BookmarkList 
+            folder={this.props.folders[this.props.folder]} 
+            folders={this.props.folders} 
+            deleteBookmark={this.deleteBookmark} 
+            updateBookmark={this.updateBookmark}
+            updateBookmarkList={this.updateBookmarkList}
+
+            />
         </div>
         )
     }

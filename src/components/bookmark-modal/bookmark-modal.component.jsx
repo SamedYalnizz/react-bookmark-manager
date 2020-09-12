@@ -32,7 +32,6 @@ export class BookmarkModal extends React.Component{
         this.setState({websiteUrl: event.target.value})
     };
     handleFolderSelectionChange(event){
-        console.log(event.target.value);
         this.setState({folderSelection: event.target.value})
     };
 
@@ -85,18 +84,18 @@ export class BookmarkModal extends React.Component{
         if(!urlValue.includes('http://', 'https://')){
             urlValue = `https://${urlValue}`;
         }
-        //delete old bookmark if the user is editing 
         const newBookmark = {
             name: this.state.websiteName,
             url: urlValue,
         }
-        this.props.addBookmark(newBookmark, this.state.folderSelection);
+        if(this.props.folderIndex){
+            this.props.updateBookmark(this.state.folderSelection, this.props.bookmarkIndex, this.state.websiteName, urlValue)
+        } else {
+            this.props.addBookmark(newBookmark, this.state.folderSelection);
+        }
         this.props.close();
     }
 
-    //need update Bookmark function
-
- 
 
     render(){        
         const errors = this.validateInput(
@@ -110,6 +109,7 @@ export class BookmarkModal extends React.Component{
             return hasError ? shouldShow : false;
           };
         
+        
         return (
             <div className='modal-container'>
                 <FontAwesomeIcon icon={faWindowClose} className="close-icon" onClick= {this.props.close}/>
@@ -121,9 +121,9 @@ export class BookmarkModal extends React.Component{
                         <label className="form-label">
                             Website Name:
                             <input type="text" 
-                            value={this.props.websiteName ? this.props.websiteName : this.state.websiteName} 
+                            value={this.state.websiteName} 
                             onChange={this.handleWebsiteNameChange} 
-                            placeholder="Website Name"
+                            placeholder={this.props.websiteName ? this.props.websiteName : "Website Name"}
                             className="form-input"
                             className={shouldMarkError("websiteName") ? "form-input error" : "form-input"}
                             onBlur={this.handleBlur('websiteName')}    
@@ -133,10 +133,10 @@ export class BookmarkModal extends React.Component{
                             Website URL:
                             <input type="text" 
                             name="url" id="url" 
-                            placeholder="https://example.com"  
+                            placeholder={this.props.websiteUrl ? this.props.websiteUrl : "https://example.com"}
                             className={shouldMarkError("websiteUrl") ? "form-input error" : "form-input"}
                             onChange={this.handleWebsiteUrlChange} 
-                            value={this.props.websiteUrl ? this.props.websiteUrl : this.state.websiteUrl} 
+                            value={this.state.websiteUrl} 
                             onBlur={this.handleBlur('websiteUrl')} 
 
                             />
