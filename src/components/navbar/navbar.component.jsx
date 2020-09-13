@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Modal} from '../modal/modal';
 import {BookmarkModal} from '../bookmark-modal/bookmark-modal.component';
 import {FolderModal} from '../folder-modal/folder-modal.component';
+import {DarkLightModeSwitch} from '../dark-light-mode-switch/dark-light-mode-switch.component';
 
 import './navbar.style.css';
 
@@ -39,6 +40,7 @@ export class NavBar extends Component {
                 <Modal show={this.state.showFolderModal}>
                     <FolderModal close={this.hideFolderModal} addFolder={this.props.addFolder} folders={this.props.folders} />
                 </Modal>
+                <DarkLightModeSwitch />
             </div>
         )
     }

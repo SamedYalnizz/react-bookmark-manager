@@ -4,13 +4,13 @@
     line-height: 1.5rem;
     height: fit-content;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--item-background);
     flex: 1 0 21%;
     align-items: center;
 }
 
 .bookmark-item:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--hover-background);
 }
 
 .bookmark-delete-icon {

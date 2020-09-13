@@ -12,8 +12,8 @@
 
 .save-btn {
     cursor: pointer;
-    color: white;
-    background: tomato;
+    color: var(--on-secondary);
+    background: var(--secondary-color);
     height: 30px;
     width: 30%;
     border: none;

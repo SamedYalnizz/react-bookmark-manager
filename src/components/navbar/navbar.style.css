@@ -1,8 +1,13 @@
 .navbar {
     z-index: 1000;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-    background-color: teal; 
+    box-shadow: var(--box-shadow);
+    background-color: var(--background);
+    color: var(--on-background);
     height: 75px;
     display: block;
+}
 
+.button {
+    color: var(--on-secondary);
+    background: var(--secondary-color);
 }

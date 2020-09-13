@@ -1,6 +1,6 @@
 .button {
-    color: white;
-    background-color: tomato;
+    color: var(--on-secondary);
+    background: var(--secondary-color);
     font-size: 16px;
     border-radius: 5px;
     float: left;
